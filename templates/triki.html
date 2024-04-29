@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <a class="navbar-brand" href="/triki">TRIKI</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
+      aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarText">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="/">Jugadores <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#" data-toggle="modal" data-target="#configModal">Configuración</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/podio">Podio
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#" data-toggle="modal" data-target="#partidaModal">Reiniciar partida</a>
+        </li>
+      </ul>
+      <span class="navbar-text">
+        <p id="timer" style="color: white;">Tiempo restante: </p>
+      </span>
+    </div>
+  </nav>
+
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TRIQUI </title>
+  <ul id="user-list">
+    <!-- Aquí se mostrarán los usuarios -->
+  </ul>
+  <link rel="stylesheet" href="/static/styles.css" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+
+  <script src="/static/index.js" defer></script>
+
+
+  <div style="display: flex; align-items:center; justify-content: space-evenly">
+
+
+  </div>
+
+
+
+</head>
+
+<body>
+
+
+  <div class="alert alert-dark" role="alert">
+    <p id="turno">Turno del jugador 1</p>
+  </div>
+
+  <div class="tablero">
+
+
+    <div class="d-flex justify-content-around" style="height: 450px">
+      <div class="card bg-light" style="width: 22rem; margin: 20px; border-radius: 10%;" id="tarjeta1">
+        <div class="card-body bg-danger" style="border-radius: 10%;">
+          <img class="card-foto circular-image" alt="Foto del usuario" /><br><br>
+          <h5>Jugador1:</h5>
+          <p class="card-nombre"></p>
+          <h5>Edad:</h5>
+          <h5 class="card-nombre"></h5>
+          <p class="card-edad"></p>
+          <h5>Correo:</h5>
+          <h5 class="card-nombre"></h5>
+          <p class="card-correo"></p>
+        </div>
+      </div>
+
+      <div class="card bg-light" style="width: 22rem; margin: 20px;border-radius: 10%;" id="tarjeta2">
+        <div class="card-body bg-primary" style="border-radius: 10%;">
+          <img class="card-foto2 circular-image" alt="Foto del usuario" /><br><br>
+          <h5>Jugador2:</h5>
+          <p class="card-nombre2"></p>
+          <h5>Edad:</h5>
+          <h5 class="card-nombre"></h5>
+          <p class="card-edad2"></p>
+          <h5>Correo:</h5>
+          <h5 class="card-nombre"></h5>
+          <p class="card-correo2"></p>
+        </div>
+      </div>
+    </div>
+
+
+    <div style="width:60%;display:flex;align-items: center;justify-content: center;">
+      <div id="contenedorGrilla">
+        <div class="cuadrado arriba"></div>
+        <div class="cuadrado arriba medio"></div>
+        <div class="cuadrado arriba"></div>
+        <div class="cuadrado"></div>
+        <div class="cuadrado medio"></div>
+        <div class="cuadrado"></div>
+        <div class="cuadrado abajo izquierda"></div>
+        <div class="cuadrado abajo medio"></div>
+        <div class="cuadrado abajo"></div>
+      </div>
+      <dialog type="modal">
+        <h2></h2>
+        <button id="reiniciarJuego">Reiniciar</button>
+      </dialog>
+    </div>
+  </div>
+
+
+  <!-- Modal -->
+  <div class="modal fade" id="configModal" tabindex="-1" role="dialog" aria-labelledby="configModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="configModalLabel">Configuración</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form id="configForm"> <!-- Identificador para el formulario -->
+            <div class="form-group">
+              <label for="exampleInput1">Tiempo restante entre jugadores (segundos)</label>
+              <input type="number" class="form-control" id="exampleInput1" aria-describedby="help1"
+                placeholder="Introduce un valor">
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+          <button type="button" class="btn btn-primary" onclick="guardarCambios()">Guardar cambios</button>
+          <!-- Llamar a la función en clic -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal -->
+  <div class="modal fade" id="partidaModal" tabindex="-1" role="dialog" aria-labelledby="messageModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="messageModalLabel">Mensaje Importante</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <!-- Mensaje a mostrar -->
+          ¿Estás seguro de que quieres reiniciar la partida?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+          <button type="button" class="btn btn-primary" id="confirmButton">Si</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+ 
+
+</body>
+
+</html>
